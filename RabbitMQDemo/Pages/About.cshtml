@@ -1,0 +1,15 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+
+<section>
+    <p>This is demo project for practicing with rabbitmq queues.</p>
+    <p>There is two queues:</p>
+    <ol>
+        <li>Mailing queue - for sending series of emails, with progress tracking and error handling.</li>
+        <li>Support queue - for support calls, persistent, without db involvement.</li>
+    </ol>
+    <p>Powered by docker.</p>
+</section>

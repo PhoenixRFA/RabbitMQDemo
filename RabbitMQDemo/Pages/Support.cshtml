@@ -1,0 +1,36 @@
+﻿@page
+@model SupportModel
+@{
+    ViewData["Title"] = "Support - ask";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ask for support</h1>
+    <p>
+        Fill and submit the form. Your question will put into durable RabbitMQ queue and will processed on <a asp-page="./SupportAnswer">Answer page</a><br />
+        No database involved, all data stored with RabbitMQ
+    </p>
+</div>
+<section>
+    <form method="post">
+        <div class="mb-3">
+            <input class="form-control" type="email" name="email" placeholder="Your email" />
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control" name="text" placeholder="Place your question here"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Ask</button>
+        <button id="fill-form-btn" type="button" class="btn btn-secondary">Fill</button>
+    </form>
+</section>
+
+<script>
+    const btn = document.getElementById('fill-form-btn');
+    btn.addEventListener('click', fillForm);
+
+    function fillForm(e){
+        const form = this.closest('form');
+        form.querySelector('[name=email]').value = 'email@email.com';
+        form.querySelector('[name=text]').value = 'Some question text.';
+    }
+</script>

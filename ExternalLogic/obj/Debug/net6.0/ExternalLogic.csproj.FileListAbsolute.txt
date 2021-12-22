@@ -1,0 +1,12 @@
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\bin\Debug\net6.0\ExternalLogic.deps.json
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\bin\Debug\net6.0\ExternalLogic.dll
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\bin\Debug\net6.0\ref\ExternalLogic.dll
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\bin\Debug\net6.0\ExternalLogic.pdb
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ExternalLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ExternalLogic.AssemblyInfoInputs.cache
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ExternalLogic.AssemblyInfo.cs
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ExternalLogic.csproj.CoreCompileInputs.cache
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ExternalLogic.dll
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ref\ExternalLogic.dll
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ExternalLogic.pdb
+C:\Users\Phoenix\source\repos\_TheLab\RabbitMQDemo\ExternalLogic\obj\Debug\net6.0\ExternalLogic.csproj.AssemblyReference.cache

@@ -1,0 +1,63 @@
+﻿@page
+@model SupportAnswerModel
+@{
+    ViewData["Title"] = "Support - answer";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Answer for support questions</h1>
+    <p>
+        If there are any messages in the queue you will take one and answer on it<br />
+        If you not answer in session window (default: 5 minutes) your session will be abadonned and message returned to the queue
+    </p>
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <h2>@Model.Message</h2>
+    }
+</div>
+@if(Model.Question != null)
+{
+    <section id="answer-wrap">
+        <p>from: @Model.Question.Email</p>
+        <p>@Model.Question.Text</p>
+        <form method="post">
+            <input type="hidden" name="id" value="@Model.Question.Id" />
+            <div class="mb-3">
+                <textarea class="form-control" name="text" placeholder="Place your answer here"></textarea>
+            </div>
+            <button id="form-submit-btn" type="submit" class="btn btn-primary">Answer</button>
+        </form>
+    </section>
+}
+
+<script>
+    sheduleSessionCheck();
+
+    function isConnectionAlive(){
+        fetch('/home/isConnectionAlive')
+        .then(x=>x.json())
+        .then(res => {
+            if(!res.result){
+                document.getElementById('form-submit-btn').disabled = true;
+
+                const h2 = document.createElement('h2');
+                h2.innerText = 'Your session is not alive anymore. Refresh page to get new question.';
+                
+                document.getElementById('answer-wrap').append(h2);
+
+                sendNack();
+            }else{
+                sheduleSessionCheck();
+            }
+        })
+    }
+
+    function sheduleSessionCheck(){
+        setTimeout(isConnectionAlive, 5000);
+    }
+
+    function sendNack(){
+        const id = document.querySelector('#answer-wrap [name=id]').value;
+        fetch('/home/sendNack/'+id);
+    }
+</script>

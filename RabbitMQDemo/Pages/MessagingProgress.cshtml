@@ -1,0 +1,63 @@
+@page
+@model MessagingProgressModel
+@{
+    ViewData["Title"] = "Messaging progress";
+}
+
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <p><span id="info-label">Sending..</span> <span id="processed-count"></span>/<span id="total-count"></span></p>
+    <p id="error-count-wrap" style="display: none;">Some messages not sended: <span id="error-count"></span></p>
+    <div class="progress">
+        <div id="progress" class="progress-bar" style="width: 0%;"><span id="progress-label"></span></div>
+    </div>
+    <div class="mt-3">
+        <a asp-page="./Index" class="btn btn-primary">&lt; Back</a>
+    </div>
+</div>
+
+<script>
+    const id = '@Model.Id';
+    const errorWrap = document.getElementById('error-count-wrap');
+    const errorCount = document.getElementById('error-count');
+    const totalCount = document.getElementById('total-count');
+    const processedCount = document.getElementById('processed-count');
+    const progress = document.getElementById('progress');
+    const progressLabel = document.getElementById('progress-label');
+
+    const polling = setInterval(() => {
+        fetch('/home/getMessagingProgress?id='+id)
+            .then(res => res.json())
+            .then(data => {
+                if(data.errors > 0){
+                    errorWrap.style.display = 'block';
+                    errorCount.innerText = data.errors;
+                    progress.classList.add('bg-warning');
+                } else {
+                    errorWrap.style.display = 'none';
+                }
+
+                totalCount.innerText = data.total;
+                processedCount.innerText = data.processed;
+
+                const percent = (data.processed / data.total * 100).toFixed(0);
+                progress.style.width = percent + '%';
+                progressLabel.innerText = percent + '%';
+
+                if(data.processed === data.total){
+                    clearInterval(polling);
+                    
+                    progress.classList.remove('bg-warning');
+                    if(data.errors === 0){
+                        progress.classList.add('bg-success');
+                    }else if (data.errors === data.total){
+                        progress.classList.add('bg-danger');
+                    }else{
+                        progress.classList.add('bg-warning');
+                    }
+
+                    document.getElementById('info-label').innerText = 'Completed!';
+                }
+            });
+    }, 1000);
+</script>

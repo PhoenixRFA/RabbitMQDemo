@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>
+        This is RabbitMQ demo project.<br/>
+        There are two services:
+        <ul>
+            <li><b>Emailing service.</b> Used for sending email in batches. Emails puts into a queue and then send by external worker (hosted service for example).</li>
+            <li><b>Support service.</b> Used for storing questions. Taking question from a queue and answering (persistance example).</li>
+        </ul>
+        Go to services through navbar at top.
+    </p>
+</div>
